@@ -12,24 +12,24 @@ import android.widget.ListView;
 
 import com.example.sip.R;
 import com.example.sip.controllers.adapters.AdapterFormation;
+import com.example.sip.controllers.adapters.AdapterFormationMenu;
 
 import java.util.ArrayList;
 
-public class FormationFragment extends Fragment {
+public class FormationMenuFragment extends Fragment {
     View view;
     ListView lv_formacion;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.formacion_layout,container,false);
+        view = inflater.inflate(R.layout.formacion_menu_layout,container,false);
         ArrayList<String> options = new ArrayList<String>();
-        options.add("Formación");
-        options.add("Prestamos");
-        options.add("Configuración");
+        options.add("Grupos");
+        options.add("Clientes");
 
-        lv_formacion=(ListView)view.findViewById(R.id.list_formacion);
-        final AdapterFormation adapterFormation = new AdapterFormation(getActivity(), options);
-        lv_formacion.setAdapter(adapterFormation);
+        lv_formacion=(ListView)view.findViewById(R.id.list_formacion_menu);
+        final AdapterFormationMenu adapterFormationMenu = new AdapterFormationMenu(getActivity(), options);
+        lv_formacion.setAdapter(adapterFormationMenu);
         lv_formacion.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -39,7 +39,16 @@ public class FormationFragment extends Fragment {
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.setCustomAnimations(R.animator.enter_from_right, R.animator.exit_to_left);
                     fragmentTransaction
-                            .replace(R.id.content_main, new FormationMenuFragment())
+                            .replace(R.id.content_main, new GroupFragment())
+                            .addToBackStack(null)
+                            .commit();
+                    fragmentManager.executePendingTransactions();
+                }else if (position == 1){
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setCustomAnimations(R.animator.enter_from_right, R.animator.exit_to_left);
+                    fragmentTransaction
+                            .replace(R.id.content_main, new ClientFragment())
                             .addToBackStack(null)
                             .commit();
                     fragmentManager.executePendingTransactions();

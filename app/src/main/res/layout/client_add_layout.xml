@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="visible"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+                <Button
+                    android:id="@+id/btn_cliente"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Cliente" />
+
+                <Button
+                    android:id="@+id/btn_prestamo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Prestamo"/>
+
+                <Button
+                    android:id="@+id/btn_negocio"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Negocio"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_cliente"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:visibility="visible">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                                <EditText
+                                    android:id="@+id/txt_nombre"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Nombre"/>
+
+                                <EditText
+                                    android:id="@+id/txt_paterno"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Paterno"/>
+
+                                <EditText
+                                    android:id="@+id/txt_materno"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Materno"/>
+
+                                <EditText
+                                    android:id="@+id/txt_tipo_cliente_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Cliente Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_lugar_nacimiento_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Lugar Nacimiento Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_fecha_nacimiento"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Fecha Nacimiento"/>
+
+                                <Spinner
+                                    android:id="@+id/cmb_estado_civil_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                                <Spinner
+                                    android:id="@+id/cmb_genero_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                                <Spinner
+                                    android:id="@+id/cmb_nacionalidad_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+
+                                <EditText
+                                    android:id="@+id/txt_telefono_celular"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Telefono Celular"/>
+
+                                <Spinner
+                                    android:id="@+id/cmb_compania_celular_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"/>
+                        </LinearLayout>
+                </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_prestamo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:visibility="gone">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                                <EditText
+                                    android:id="@+id/txt_identificacion_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Identificacion Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_numero_identificacion"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Numero Identificacion"/>
+
+                                <EditText
+                                    android:id="@+id/txt_cliente_competencia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Cliente Competencia"/>
+
+                                <EditText
+                                    android:id="@+id/txt_competencia_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Competencia Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_prestamo_solicitado_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Prestamo Solicitado Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_prestamo_solicitado"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Prestamo Solicitado"/>
+
+                                <EditText
+                                    android:id="@+id/txt_destino_prestamo_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Destino Prestamo Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_codigo_postal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Codigo Postal"/>
+
+                                <EditText
+                                    android:id="@+id/txt_estado_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="CEstado Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_localidad"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Localidad"/>
+
+                                <EditText
+                                    android:id="@+id/txt_delegacion"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Delegacion"/>
+
+                                <EditText
+                                    android:id="@+id/txt_colonia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Colonia"/>
+
+                                <EditText
+                                    android:id="@+id/txt_calle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Calle"/>
+
+                                <EditText
+                                    android:id="@+id/txt_numero_exterior"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Numero Exterior"/>
+
+                                <EditText
+                                    android:id="@+id/txt_numero_interior"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Numero Interior"/>
+
+                                <EditText
+                                    android:id="@+id/txt_sucursal_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Sucursal Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_promotor_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Promotor Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_grupo_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Grupo Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_autorizacion_impresa"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Autorizacion Impresa"/>
+
+                                <EditText
+                                    android:id="@+id/txt_preafilidado"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Preafiliado"/>
+
+                                <EditText
+                                    android:id="@+id/txt_estatus_cliente_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Estatus Cliente Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_amotivo_rechazo_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Motivo Rechazo Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_motivo_rechazo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Motivo Rechazo"/>
+
+                                <EditText
+                                    android:id="@+id/txt_consecutivo_grupo"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Consecutivo Grupo"/>
+
+                                <EditText
+                                    android:id="@+id/txt_consecutivo_cliente"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Consecutivo Cliente"/>
+
+                                <EditText
+                                    android:id="@+id/txt_fecha_sincronizacion"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Fecha Sincronizacion"/>
+
+                                <EditText
+                                    android:id="@+id/txt_fecha_consulta_buro"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Fecha Consulta Buro"/>
+                        </LinearLayout>
+                </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearlayout_negocio"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:visibility="gone">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                                <EditText
+                                    android:id="@+id/txt_codigo_postal_negocio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Codigo Postal Negocio"/>
+
+                                <EditText
+                                    android:id="@+id/txt_estado_negocio_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Estado Negocio Id"/>
+
+                                <EditText
+                                    android:id="@+id/txt_localidad_negocio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Localidad Negocio"/>
+
+                                <EditText
+                                    android:id="@+id/txt_delegacion_negocio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Delegacion Negocio"/>
+
+                                <EditText
+                                    android:id="@+id/txt_colonia_negocio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Colonia Negocio"/>
+
+                                <EditText
+                                    android:id="@+id/txt_calle_negocio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Calle Negocio"/>
+
+                                <EditText
+                                    android:id="@+id/txt_numero_exterior_negocio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Numero Exterior Negocio"/>
+
+                                <EditText
+                                    android:id="@+id/txt_numero_interior_negocio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:hint="Numero Interior Negocio"/>
+
+                                <Button
+                                    android:id="@+id/btn_add"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/action_add" />
+
+                        </LinearLayout>
+                </ScrollView>
+        </LinearLayout>
+
+</LinearLayout>

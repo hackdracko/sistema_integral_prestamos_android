@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
         android:id="@+id/textView" />
 
     <EditText
@@ -28,7 +27,6 @@
         android:layout_centerHorizontal="true"
         android:background="@color/colorWhite"
         android:layout_below="@id/textView"
-        android:layout_marginTop="100dp"
         android:id="@+id/username" />
 
     <EditText
@@ -39,7 +37,6 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/password"
         android:layout_below="@id/username"
-        android:layout_marginTop="50dp"
         android:background="@color/colorWhite"
         android:text="Password" />
 
@@ -49,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:background="@color/colorSuccess"
         android:id="@+id/btn_login" />
 

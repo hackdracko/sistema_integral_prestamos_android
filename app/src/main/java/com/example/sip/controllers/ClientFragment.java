@@ -10,10 +10,10 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +22,9 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.example.sip.R;
+import com.example.sip.controllers.adapters.CustomAdapterClient;
 import com.example.sip.controllers.adapters.CustomAdapterGroup;
+import com.example.sip.models.Dao.ClientesFormacion;
 import com.example.sip.models.Dao.GruposFormacion;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
@@ -37,27 +39,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GroupFragment extends Fragment implements CustomAdapterGroup.customClickListener {
+public class ClientFragment extends Fragment implements CustomAdapterClient.customClickListener {
     private View view;
-    private ListView lv_group;
-    private Button btn_add;
-    private EditText txt_description;
-    private String str_description;
+    private ListView lv_client;
+    private FloatingActionButton fab;
     public static String SessionPreference = "SessionPreference";
     SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.group_layout,container,false);
+        view = inflater.inflate(R.layout.client_layout,container,false);
         final DBHelper helper = OpenHelperManager.getHelper(getActivity(), DBHelper.class);
-        ArrayList<GruposFormacion> list = getListGroups(helper);
+        ArrayList<ClientesFormacion> list = getListClients(helper);
 
-        lv_group = (ListView)view.findViewById(R.id.list_group);
+        lv_client = (ListView)view.findViewById(R.id.list_client);
 
-        final CustomAdapterGroup customAdapterGroup = new CustomAdapterGroup(getActivity(), list);
-        lv_group.setAdapter(customAdapterGroup);
-        customAdapterGroup.setCustomClickListener(this);
-        lv_group.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        final CustomAdapterClient customAdapterClient = new CustomAdapterClient(getActivity(), list);
+        lv_client.setAdapter(customAdapterClient);
+        customAdapterClient.setCustomClickListener(this);
+        /*lv_group.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
@@ -73,37 +73,21 @@ public class GroupFragment extends Fragment implements CustomAdapterGroup.custom
                         .commit();
                 fragmentManager.executePendingTransactions();
             }
-        });
+        });*/
 
-        btn_add = (Button)view.findViewById(R.id.btn_add);
-
-        btn_add.setOnClickListener(new View.OnClickListener() {
+        fab = (FloatingActionButton)view.findViewById(R.id.fab_client);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txt_description = (EditText)view.findViewById(R.id.txt_description);
-                if(txt_description.getText().length() < 3){
-                    Context context = getActivity();
-                    CharSequence text = "La descripción del grupo debe tener al menos 3 caracteres";
-                    Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
-                    toast.show();
-                    return;
-                }
-                System.out.println(txt_description.getText().length());
-                str_description = txt_description.getText().toString();
-                createGroup(helper, str_description);
-                /*
-                * HIDE KEYBOARD
-                */
-                InputMethodManager inputMethodManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                /*
-                * CLEAR EDITTEXT
-                */
-                txt_description.setText("");
-                ArrayList<GruposFormacion> list = getListGroups(helper);
-                customAdapterGroup.notifyDataSetChanged();
-                customAdapterGroup.updateResults(list);
-
+                System.out.println("Agrega Cliente");
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.animator.enter_from_right, R.animator.exit_to_left);
+                fragmentTransaction
+                        .replace(R.id.content_main, new ClientAddFragment())
+                        .addToBackStack(null)
+                        .commit();
+                fragmentManager.executePendingTransactions();
             }
         });
 
@@ -111,10 +95,10 @@ public class GroupFragment extends Fragment implements CustomAdapterGroup.custom
     }
 
     public void getListAdapter (DBHelper helper) {
-        ArrayList<GruposFormacion> list = getListGroups(helper);
-        final CustomAdapterGroup customAdapterGroup = new CustomAdapterGroup(getActivity(), list);
-        lv_group.setAdapter(customAdapterGroup);
-        customAdapterGroup.setCustomClickListener(this);
+        ArrayList<ClientesFormacion> list = getListClients(helper);
+        final CustomAdapterClient customAdapterClient = new CustomAdapterClient(getActivity(), list);
+        lv_client.setAdapter(customAdapterClient);
+        customAdapterClient.setCustomClickListener(this);
     }
 
     @Override
@@ -184,24 +168,23 @@ public class GroupFragment extends Fragment implements CustomAdapterGroup.custom
         return null;
     }
 
-    public ArrayList<GruposFormacion> getListGroups (DBHelper helper){
+    public ArrayList<ClientesFormacion> getListClients (DBHelper helper){
         Dao dao;
         try {
-            dao = helper.getGruposFormacionDao();
-            QueryBuilder<GruposFormacion, Integer> queryBuilder = dao.queryBuilder();
+            dao = helper.getClientesFormacionDao();
+            QueryBuilder<ClientesFormacion, Integer> queryBuilder = dao.queryBuilder();
             queryBuilder.query();
-            PreparedQuery<GruposFormacion> preparedQuery = queryBuilder.prepare();
+            PreparedQuery<ClientesFormacion> preparedQuery = queryBuilder.prepare();
 
-            ArrayList<GruposFormacion> grupos = new ArrayList<GruposFormacion>();
-            List<GruposFormacion> res = dao.query(preparedQuery);
-            for (GruposFormacion gruposFormacion : res){
-                GruposFormacion gruposFormacionResult = new GruposFormacion();
-                gruposFormacionResult.setId(gruposFormacion.getId());
-                gruposFormacionResult.setNombreGrupo(gruposFormacion.getNombreGrupo());
-                gruposFormacionResult.setStsGrupoclienteId(gruposFormacion.getStsGrupoclienteId());
-                grupos.add(gruposFormacionResult);
+            ArrayList<ClientesFormacion> clientes = new ArrayList<ClientesFormacion>();
+            List<ClientesFormacion> res = dao.query(preparedQuery);
+            for (ClientesFormacion clientesFormacion : res){
+                ClientesFormacion clientesFormacionResult = new ClientesFormacion();
+                clientesFormacionResult.setId(clientesFormacion.getId());
+                clientesFormacionResult.setNombre(clientesFormacion.getNombre());
+                clientes.add(clientesFormacion);
             }
-            return grupos;
+            return clientes;
         } catch (SQLException e) {
             System.out.println("Error creando usuario");
         } catch (java.sql.SQLException e) {
